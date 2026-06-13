@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Application Update | INFOTICS</title>
+    <style>
+        /* GLOBAL STYLES — optimized for email clients & modern design */
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f0f4f9;
+            margin: 0;
+            padding: 24px 16px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.18);
+        }
+
+        /* DYNAMIC HEADER STYLES — rich color distinction */
+        .header-approved {
+            background: linear-gradient(105deg, #0B5E2E 0%, #0A4724 100%);
+            padding: 38px 30px;
+            text-align: center;
+            color: white;
+            border-bottom: 3px solid #A3E4B0;
+        }
+        .header-rejected {
+            background: linear-gradient(105deg, #A1220A 0%, #771c08 100%);
+            padding: 38px 30px;
+            text-align: center;
+            color: white;
+            border-bottom: 3px solid #F9A98E;
+        }
+        .header-approved h2, .header-rejected h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+        .header-approved p, .header-rejected p {
+            margin: 10px 0 0;
+            opacity: 0.88;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* content area */
+        .content {
+            padding: 36px 32px;
+        }
+        .greeting {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0a2e42;
+            margin-bottom: 12px;
+        }
+        .status-message {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            color: #2c3f55;
+        }
+        .badge-highlight {
+            display: inline-block;
+            font-weight: 800;
+            padding: 0 4px;
+        }
+        /* shared info panel */
+        .info-card {
+            background: #F9FCFE;
+            border: 1px solid #e5eff9;
+            border-radius: 22px;
+            padding: 20px 24px;
+            margin: 28px 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        .info-card-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #0c4a6e;
+            margin-bottom: 18px;
+            border-left: 5px solid #0466c2;
+            padding-left: 14px;
+        }
+        .detail-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid #eaeff5;
+            font-size: 14px;
+            color: #1e4663;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: 700;
+            color: #0a334f;
+            min-width: 108px;
+            width: 108px;
+            font-size: 13.5px;
+        }
+        .detail-value {
+            flex: 1;
+            color: #1f4462;
+            word-break: break-word;
+        }
+        /* status badges with strong color */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 16px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+        }
+        .status-approved {
+            background: #e0f2e5;
+            color: #0b5e2e;
+            border: 1px solid #b3dbc0;
+        }
+        .status-rejected {
+            background: #ffeae6;
+            color: #bc2c1c;
+            border: 1px solid #f9cfc3;
+        }
+        .reject-reason-box {
+            background: #fff6f2;
+            border-left: 5px solid #e05a3a;
+            padding: 12px 18px;
+            border-radius: 16px;
+            margin-top: 14px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #9b3b22;
+        }
+        /* Zoom green container (approved only) */
+        .zoom-details-card {
+            background: #EFFAF4;
+            border-radius: 24px;
+            padding: 18px 24px;
+            margin: 20px 0 20px;
+            border: 1px solid #cae3d4;
+        }
+        .zoom-header {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1B6B43;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .zoom-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 12px 0;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .zoom-label {
+            font-weight: 800;
+            color: #1a5a3a;
+            min-width: 95px;
+            font-size: 13.5px;
+        }
+        .zoom-link {
+            color: #0466b0;
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-all;
+            background: white;
+            padding: 3px 10px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .zoom-link:hover {
+            text-decoration: underline;
+            background: #eef5ff;
+        }
+        .instruction-note {
+            background: #FFF7E5;
+            border-left: 6px solid #F5A623;
+            padding: 16px 20px;
+            border-radius: 20px;
+            margin: 24px 0 16px;
+            font-size: 13.5px;
+            color: #8a6300;
+            line-height: 1.55;
+        }
+        /* buttons group */
+        .button-group {
+            text-align: center;
+            margin: 30px 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: #0B5E2E;
+            color: white !important;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.2s;
+            display: inline-block;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .btn-primary:hover {
+            background: #094d24;
+            transform: scale(0.98);
+        }
+        .btn-secondary {
+            background: #2c4b74;
+            color: white !important;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            background: #1f3a5c;
+        }
+        .support-tip {
+            background: #f9f2ed;
+            border-radius: 18px;
+            padding: 12px 20px;
+            margin-top: 22px;
+            text-align: center;
+            font-size: 13px;
+            color: #9a4b2c;
+        }
+        .footer {
+            background: #0B1C2E;
+            padding: 28px 30px 24px;
+            text-align: center;
+            color: #a5bedb;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .footer a {
+            color: #cfdef5;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.2);
+        }
+        .footer a:hover {
+            color: white;
+        }
+        @media (max-width: 540px) {
+            .content { padding: 26px 18px; }
+            .detail-label { min-width: 100%; width: auto; margin-bottom: 4px; }
+            .detail-row { flex-direction: column; }
+            .button-group { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER COLOR CHANGED based on status: APPROVED = green gradient, REJECTED = dark red/burgundy -->
+        @if($enrollment->status === 'Approved')
+        <div class="header-approved">
+            <h2>✅ REGISTRATION APPROVED!</h2>
+            <p>You’re officially enrolled – check meeting details below</p>
+        </div>
+        @else
+        <div class="header-rejected">
+            <h2>❌ REGISTRATION UPDATE</h2>
+            <p>Decision regarding your enrollment</p>
+        </div>
+        @endif
+
+        <div class="content">
+            <div class="greeting">Dear {{ $enrollment->fullName }},</div>
+            
+            @if($enrollment->status === 'Approved')
+                <div class="status-message">
+                    🎉 <strong>Great news!</strong> Your registration for 
+                    <strong>{{ $enrollment->workshopTitle }}</strong> has been 
+                    <span style="color:#0B5E2E; background:#E6F4EA; padding:2px 8px; border-radius:40px; font-weight:800;">APPROVED</span>.
+                    We've prepared everything to make this session valuable for you.
+                </div>
+            @else
+                <div class="status-message">
+                    😔 After careful evaluation, your application for 
+                    <strong>{{ $enrollment->workshopTitle }}</strong> has been 
+                    <span style="color:#B53A1C; background:#FDEDE8; padding:2px 8px; border-radius:40px; font-weight:800;">REJECTED</span>.
+                    The detailed reason is mentioned below. We encourage you to apply for future workshops.
+                </div>
+            @endif
+
+            <!-- ========== ZOOM & INSTRUCTIONS (ONLY FOR APPROVED) ========== -->
+            @if($enrollment->status === 'Approved')
+                <div class="zoom-details-card">
+                    <div class="zoom-header">
+                        <span>🔗 JOIN ONLINE SESSION</span>
+                    </div>
+                    @if($enrollment->zoom_id)
+                    <div class="zoom-row">
+                        <span class="zoom-label">📌 Meeting ID:</span>
+                        <span style="font-weight:600; background:#fff; padding:2px 12px; border-radius:40px;">{{ $enrollment->zoom_id }}</span>
+                    </div>
+                    @endif
+                    @if($enrollment->zoom_password)
+                    <div class="zoom-row">
+                        <span class="zoom-label">🔐 Passcode:</span>
+                        <span style="font-family: monospace; background:#fff2e4; padding:2px 12px; border-radius:40px;">{{ $enrollment->zoom_password }}</span>
+                    </div>
+                    @endif
+                    @if($enrollment->zoom_meeting_link)
+                    <div class="zoom-row">
+                        <span class="zoom-label">🌐 Join Link:</span>
+                        <span><a href="{{ $enrollment->zoom_meeting_link }}" class="zoom-link" target="_blank" rel="noopener">{{ $enrollment->zoom_meeting_link }}</a></span>
+                    </div>
+                    @endif
+                </div>
+
+                <div class="instruction-note">
+                    <strong>📌 Essential prep & etiquette:</strong><br>
+                    • Arrive 5–10 minutes early to test audio & video.<br>
+                    • Mute your microphone when not speaking.<br>
+                    • Use the "Raise Hand" feature for questions.<br>
+                    • Strong internet connection recommended for seamless experience.
+                </div>
+            @endif
+
+            <!-- ========== SESSION & REGISTRATION INFO CARD ========== -->
+            <div class="info-card">
+                <div class="info-card-title">📋 ORIENTATION & REGISTRATION SUMMARY</div>
+                @php
+                    $workshop = $enrollment->relationLoaded('workshop') ? $enrollment->workshop : null;
+                    $wDate = $workshop->date ?? null;
+                    $wTime = $workshop->time ?? null;
+                @endphp
+
+                <div class="detail-row">
+                    <span class="detail-label">Workshop Topic:</span>
+                    <span class="detail-value">{{ $enrollment->workshopTitle }}</span>
+                </div>
+
+                @if($wDate)
+                <div class="detail-row">
+                    <span class="detail-label">Session Date:</span>
+                    <span class="detail-value">{{ \Carbon\Carbon::parse($wDate)->format('F j, Y') }}</span>
+                </div>
+                @endif
+
+                @if($wTime)
+                <div class="detail-row">
+                    <span class="detail-label">Session Time:</span>
+                    <span class="detail-value">{{ $wTime }} (Event timezone)</span>
+                </div>
+                @endif
+
+                <div class="detail-row">
+                    <span class="detail-label">Full Name:</span>
+                    <span class="detail-value">{{ $enrollment->fullName }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email Address:</span>
+                    <span class="detail-value">{{ $enrollment->email }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Phone Number:</span>
+                    <span class="detail-value">{{ $enrollment->phone }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Current Status:</span>
+                    <span class="detail-value">
+                        @if($enrollment->status === 'Approved')
+                            <span class="status-badge status-approved">✓ APPROVED</span>
+                        @else
+                            <span class="status-badge status-rejected">✗ REJECTED</span>
+                        @endif
+                    </span>
+                </div>
+
+                @if($enrollment->status === 'Rejected' && $enrollment->rejectReason)
+                <div class="reject-reason-box">
+                    <strong>📢 Rejection reason:</strong> {{ $enrollment->rejectReason }}
+                </div>
+                @endif
+            </div>
+
+            <!-- ========== ACTION BUTTONS ========== -->
+            <div class="button-group">
+                @if($enrollment->status === 'Approved')
+                    <a href="{{ $enrollment->zoom_meeting_link ?? '#' }}" class="btn-primary" target="_blank">🎥 JOIN MEETING NOW</a>
+                @endif
+                <a href="{{ url('/') }}" class="btn-secondary">🌐 VISIT INFOTICS WEBSITE</a>
+            </div>
+
+            <!-- extra support note for rejected applications -->
+            @if($enrollment->status === 'Rejected')
+            <div class="support-tip">
+                💬 <strong>Need more information?</strong> Our team is here to help. Write to us at 
+                <a href="mailto:admissions@infotics.edu.pk" style="color:#bc5a3c; font-weight:600;">admissions@infotics.edu.pk</a> 
+                and we’ll get back to you shortly.
+            </div>
+            @endif
+
+            <!-- small note for approved: calendar reminder tip -->
+            @if($enrollment->status === 'Approved')
+            <div style="margin-top: 18px; font-size: 12px; background: #EFF6FF; border-radius: 18px; padding: 10px 16px; text-align: center; color: #2c5282;">
+                📅 <strong>Save the date!</strong> Add this session to your calendar so you won't miss the live orientation.
+            </div>
+            @endif
+        </div>
+
+        <div class="footer">
+            <p>© {{ date('Y') }} INFOTICS — Your IT Learning Hub</p>
+            <p>
+                <a href="{{ url('/') }}">infotics.edu.pk</a> &nbsp;|&nbsp;
+                <a href="{{ url('/contact') }}">Support Center</a> &nbsp;|&nbsp;
+                <a href="#">Privacy & Terms</a>
+            </p>
+            <p style="margin-top:12px; font-size:11px; opacity:0.75;">
+                This is an automated system message. Please do not reply to this address.<br>
+                For any queries, reach out via our official contact page.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
