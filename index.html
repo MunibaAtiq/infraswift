@@ -40,32 +40,87 @@
 <section class="hero">
   <canvas id="heroCanvas" style="width:100%;height:100%"></canvas>
   <div class="hero-overlay"></div>
+  
+  <!-- Mouse Follow Glow -->
   <div class="hero-glow-m" style="position:absolute;width:900px;height:900px;background:radial-gradient(circle,rgba(0,198,255,.06) 0%,transparent 65%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1;transition:transform .4s ease"></div>
+
   <div class="container hero-content">
     <div class="row align-items-center min-vh-100 py-5 gy-5">
+      
+      <!-- LEFT SIDE (Your Content) -->
       <div class="col-lg-6">
         <div class="hero-badge"><div class="hero-dot"></div>Pakistan's IT Automation Partner</div>
-        <h1>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: #fff; line-height: 1.1;">
           <span class="d-block">Transform Your</span>
-          <span class="line2" id="typewriter" style="min-height:1.2em;display:block">Infrastructure.</span>
-          <span class="line3">Zero Downtime. Zero Hassle.</span>
+          <span class="line2" id="typewriter" style="min-height:1.2em; display:block; background: linear-gradient(90deg, #00C6FF, #39FF14); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Infrastructure.</span>
+          <span class="line3" style="font-size: clamp(1.2rem, 2.5vw, 2rem); color: rgba(255,255,255,0.5); font-weight: 500;">Zero Downtime. Zero Hassle.</span>
         </h1>
-        <p class="hero-sub">InfraSwift delivers enterprise-grade automation, cloud migration, and 24/7 monitoring — so your business runs faster, smarter, and without interruption.</p>
-        <div class="hero-acts">
-          <a href="contact.html" class="btn-p"><i class="fas fa-calendar-check"></i>Book Free Consultation</a>
-          <a href="services.html" class="btn-o" style="border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.85)"><i class="fas fa-play-circle"></i>View Services</a>
+        <p class="hero-sub" style="font-size: 1.1rem; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.8; margin: 24px 0 36px;">InfraSwift delivers enterprise-grade automation, cloud migration, and 24/7 monitoring — so your business runs faster, smarter, and without interruption.</p>
+        
+        <div class="hero-acts" style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="contact.html" class="btn-p" style="background: linear-gradient(135deg, #00C6FF, #39FF14); color: #060d18; padding: 15px 35px; border-radius: 50px; font-weight: 800; text-decoration: none; box-shadow: 0 10px 30px rgba(0, 198, 255, 0.3);"><i class="fas fa-calendar-check me-2"></i>Book Free Consultation</a>
+          <a href="services.html" class="btn-o" style="border: 2px solid rgba(255,255,255,0.3); color: #fff; padding: 13px 30px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s;"><i class="fas fa-play-circle me-2"></i>View Services</a>
         </div>
-        <div class="hero-metrics">
-          <div class="hm-item"><div class="hm-n"><span class="counter" data-target="20">0</span>+</div><div class="hm-l">Projects Done</div></div>
-          <div class="hm-item"><div class="hm-n"><span class="counter" data-target="8">0</span>+</div><div class="hm-l">Tech Partners</div></div>
-          <div class="hm-item"><div class="hm-n">99.9%</div><div class="hm-l">Uptime SLA</div></div>
-          <div class="hm-item"><div class="hm-n">24/7</div><div class="hm-l">Support</div></div>
+
+        <div class="hero-metrics" style="display: flex; gap: 30px; margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div class="hm-item"><div class="hm-n" style="font-size: 1.8rem; font-weight: 900; color: #fff;"><span class="counter" data-target="20">0</span>+</div><div class="hm-l" style="font-size: 0.7rem; text-transform: uppercase; color: rgba(255,255,255,0.4);">Projects Done</div></div>
+          <div class="hm-item"><div class="hm-n" style="font-size: 1.8rem; font-weight: 900; color: #fff;"><span class="counter" data-target="8">0</span>+</div><div class="hm-l" style="font-size: 0.7rem; text-transform: uppercase; color: rgba(255,255,255,0.4);">Tech Partners</div></div>
+          <div class="hm-item"><div class="hm-n" style="font-size: 1.8rem; font-weight: 900; color: #fff;">99.9%</div><div class="hm-l" style="font-size: 0.7rem; text-transform: uppercase; color: rgba(255,255,255,0.4);">Uptime SLA</div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE VISUAL (NEW SPHERE DESIGN WITH LOGO) -->
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="hero-visual-wrap" style="position: relative; width: 100%; height: 500px; display: flex; align-items: center; justify-content: center;">
+            
+            <!-- Background Glow behind sphere -->
+            <div style="position: absolute; width: 450px; height: 450px; background: radial-gradient(circle, rgba(0, 198, 255, 0.1) 0%, transparent 70%); z-index: 0;"></div>
+            
+            <!-- Central Glowing Sphere (Hosing Logo) -->
+            <div class="main-orb" style="width: 280px; height: 280px; background: linear-gradient(135deg, rgba(0, 198, 255, 0.7), rgba(57, 255, 20, 0.6)); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 80px rgba(0, 198, 255, 0.3); position: relative; z-index: 2; animation: orbPulse 4s ease-in-out infinite;">
+                <!-- COMPANY LOGO HERE -->
+                <img src="assets/logo.png" alt="InfraSwift Logo" style="width: 140px; height: auto; filter: brightness(0) invert(1); position: relative; z-index: 3;">
+            </div>
+
+            <!-- Floating Nodes (As per your uploaded image) -->
+            <style>
+                .node-circle { position: absolute; width: 100px; height: 100px; background: #060d18; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5; transition: 0.3s; animation: floatNode 6s ease-in-out infinite; }
+                .node-circle:hover { border-color: #5590c6; box-shadow: 0 0 25px rgba(57, 255, 20, 0.3); transform: scale(1.1); }
+                .node-circle i { font-size: 1.3rem; color: #5590c6; margin-bottom: 6px; }
+                .node-circle span { font-size: 0.6rem; font-weight: 800; color: #fff; text-transform: uppercase; text-align: center; line-height: 1.2; letter-spacing: 0.5px; }
+                @keyframes orbPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+                @keyframes floatNode { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+            </style>
+
+            <div class="node-circle" style="top: 0; left: 10%; animation-delay: 0s;">
+                <i class="fas fa-brain"></i>
+                <span>Machine<br>Learning</span>
+            </div>
+
+            <div class="node-circle" style="top: 10%; right: 0; animation-delay: 1s;">
+                <i class="fas fa-cloud"></i>
+                <span>Cloud<br>Solutions</span>
+            </div>
+
+            <div class="node-circle" style="bottom: 0; left: 20%; animation-delay: 2s;">
+                <i class="fas fa-database"></i>
+                <span>Data<br>Analytics</span>
+            </div>
+
+            <div class="node-circle" style="bottom: 15%; right: -10px; animation-delay: 3.5s;">
+                <i class="fas fa-code"></i>
+                <span>Business<br>Apps</span>
+            </div>
         </div>
       </div>
      
     </div>
   </div>
-  <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:80px;display:block"><path d="M0,20 C360,80 1080,0 1440,50 L1440,80 L0,80 Z" fill="#ffffff"/></svg>
+  
+  <!-- Wave Divider -->
+  <svg class="hero-wave" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:80px; display:block; position: absolute; bottom: -1px; width: 100%; z-index: 5;">
+    <path d="M0,20 C360,80 1080,0 1440,50 L1440,80 L0,80 Z" fill="#ffffff"/>
+  </svg>
 </section>
 
 <!-- STATS BAR -->
