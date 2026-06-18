@@ -1,0 +1,3829 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfraSwift | Premium Enterprise IT Solutions</title>
+
+    <!-- Bootstrap 5 & FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {     
+            --primary: #2599B6;
+            --primary-dark: #4B71B2;
+            --accent: #84B971;
+            --success: #84B971;
+            --primary-glow: rgba(37, 153, 182, 0.35);
+
+            --node-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-gray: #64748b;
+            --soft-border: rgba(37, 153, 182, 0.15);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                radial-gradient(circle at 18% 20%, rgba(0, 97, 255, 0.08), transparent 28%),
+                radial-gradient(circle at 82% 16%, rgba(14, 165, 233, 0.10), transparent 30%),
+                #fff;
+            background-size: 120% 120%;
+            animation: bodyGlowMove 12s ease-in-out infinite alternate;
+            overflow-x: hidden;
+            margin: 0;
+            cursor: none;
+        }
+
+        @keyframes bodyGlowMove {
+            from {
+                background-position: 0% 0%, 100% 0%;
+            }
+
+            to {
+                background-position: 8% 6%, 90% 10%;
+            }
+        }
+
+        /* --- NAVBAR --- */
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0, 97, 255, 0.08);
+            box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+        }
+
+        .nav-shell {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+            flex-shrink: 0;
+        }
+
+        .brand-logo img {
+            width: 168px;
+            height: auto;
+            display: block;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-menu a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #1e293b;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 10px 2px;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .nav-menu i {
+            font-size: 0.62rem;
+            color: #64748b;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 46px;
+            padding: 0 22px;
+            border-radius: 6px;
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--success));
+
+            color: #fff;
+            border: none;
+            box-shadow: 0 12px 28px rgba(37, 153, 182, 0.25);
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .nav-cta:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            background: linear-gradient(135deg,
+                    var(--success),
+                    var(--primary));
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(0, 97, 255, 0.16);
+            border-radius: 10px;
+            background: #fff;
+            color: var(--text-dark);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================
+           MEGA MENU DROPDOWN
+        ========================= */
+
+        .mega-parent {
+            position: relative;
+        }
+
+        .mega-parent>a {
+            position: relative;
+        }
+
+        .mega-parent>a i {
+            margin-left: 6px;
+            font-size: 11px;
+            transition: .3s;
+        }
+
+        .mega-parent:hover>a i {
+            transform: rotate(180deg);
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+
+            width: 1200px;
+            max-width: 95vw;
+
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(37, 153, 182, .15);
+            border-radius: 20px;
+
+            padding: 35px;
+
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            box-shadow:
+                0 25px 60px rgba(15, 23, 42, .10),
+                0 10px 30px rgba(37, 153, 182, .08);
+
+            transition: .35s ease;
+
+            z-index: 9999;
+        }
+
+        .mega-menu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 4px;
+
+            border-radius: 20px 20px 0 0;
+
+            background: linear-gradient(90deg,
+                    #2599B6,
+                    #84B971);
+        }
+
+        .mega-parent:hover .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .mega-col {
+            border-right: 1px solid rgba(37, 153, 182, .15);
+            padding-right: 25px;
+        }
+
+        .mega-col:last-child {
+            border-right: none;
+        }
+
+        .mega-col h5 {
+            color: #2599B6;
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.4;
+
+            margin-bottom: 18px;
+        }
+
+        .mega-col h5::after {
+            content: '';
+            display: block;
+
+            width: 75px;
+            height: 3px;
+
+            margin-top: 10px;
+
+            background: linear-gradient(90deg,
+                    #2599B6,
+                    #84B971);
+
+            border-radius: 10px;
+        }
+
+        .mega-col a {
+            display: block;
+
+            color: #334155 !important;
+            text-decoration: none;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            line-height: 1.6;
+
+            padding: 8px 0;
+
+            transition: .3s ease;
+        }
+
+        .mega-col a:hover {
+            color: #2599B6 !important;
+            padding-left: 10px;
+        }
+
+        .mega-col a:hover {
+            background: linear-gradient(90deg,
+                    rgba(37, 153, 182, .05),
+                    rgba(132, 185, 113, .05));
+
+            border-radius: 8px;
+            padding-right: 10px;
+        }
+
+        .mega-col {
+            animation: fadeMega .5s ease;
+        }
+
+        @keyframes fadeMega {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media(max-width:991px) {
+
+            .mega-menu {
+                position: static;
+
+                width: 100%;
+                max-width: 100%;
+
+                transform: none;
+
+                opacity: 1;
+                visibility: visible;
+
+                display: none;
+
+                grid-template-columns: 1fr;
+
+                margin-top: 12px;
+                padding: 20px;
+            }
+
+            .mega-parent.active .mega-menu {
+                display: grid;
+            }
+
+            .mega-col {
+                border-right: none;
+                border-bottom: 1px solid rgba(37, 153, 182, .15);
+
+                padding-right: 0;
+                padding-bottom: 15px;
+            }
+
+            .mega-col:last-child {
+                border-bottom: none;
+            }
+
+            .mega-parent:hover .mega-menu {
+                transform: none;
+            }
+        }
+
+        /* --- HERO WRAPPER --- */
+        .hero {
+            min-height: 64vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background:
+                linear-gradient(120deg, rgba(239, 246, 255, 0.82) 0%, rgba(255, 255, 255, 0.96) 44%, rgba(240, 253, 250, 0.76) 100%),
+                linear-gradient(90deg, rgba(0, 97, 255, 0.06) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(14, 165, 233, 0.045) 1px, transparent 1px);
+            background-size: auto, 64px 64px, 64px 64px;
+            background-position: center, 0 0, 0 0;
+            padding: 38px 0;
+            overflow: hidden;
+            transition: background-position 0.8s ease, box-shadow 0.5s ease;
+            --mx: 70%;
+            --my: 24%;
+        }
+
+        .hero:hover {
+            background-position: center, 14px 0, 0 14px;
+            box-shadow: inset 0 0 90px rgba(0, 97, 255, 0.06);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at var(--mx) var(--my), rgba(0, 97, 255, 0.18), transparent 22%),
+                linear-gradient(115deg, rgba(0, 97, 255, 0.10), transparent 36%),
+                linear-gradient(250deg, rgba(20, 184, 166, 0.10), transparent 34%);
+            opacity: 0.78;
+            pointer-events: none;
+            animation: heroAura 9s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            right: -180px;
+            top: -190px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 97, 255, 0.12), transparent 68%);
+            filter: blur(4px);
+            transform: translate3d(0, 0, 0);
+            transition: transform 0.7s ease, opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .hero:hover::after {
+            opacity: 0.9;
+            transform: translate3d(-28px, 22px, 0) scale(1.08);
+        }
+
+        @keyframes heroAura {
+            from {
+                opacity: 0.56;
+                transform: translateX(0);
+            }
+
+            to {
+                opacity: 0.9;
+                transform: translateX(18px);
+            }
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left {
+            max-width: 590px;
+        }
+
+        .hero-eyebrow {
+            width: fit-content;
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.74rem;
+            letter-spacing: 1.6px;
+            margin-bottom: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.74);
+            border: 1px solid rgba(0, 97, 255, 0.12);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-eyebrow i {
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            font-size: 0.7rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.15rem, 4.2vw, 3.65rem);
+            font-weight: 800;
+            line-height: 1.02;
+            color: var(--text-dark);
+            margin-bottom: 18px;
+            max-width: 650px;
+        }
+
+        .hero h1 span {
+            color: transparent;
+            background: linear-gradient(110deg, var(--primary), var(--accent), var(--success), var(--primary));
+            background-size: 240% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: headlineShine 5s ease-in-out infinite;
+        }
+
+        @keyframes headlineShine {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.72;
+            max-width: 550px;
+            margin-bottom: 22px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn-talk {
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--success));
+            color: white;
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-weight: 800;
+            border: none;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            box-shadow: 0 14px 30px rgba(0, 97, 255, 0.24);
+        }
+
+        .btn-talk:hover {
+            background: linear-gradient(135deg,
+                    var(--success),
+                    var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 18px 35px var(--primary-glow);
+            color: white;
+        }
+
+        .btn-talk i,
+        .btn-explore i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-talk:hover i,
+        .btn-explore:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-explore {
+            border: 1.5px solid var(--soft-border);
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.72);
+            padding: 15px 24px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+        }
+
+        .btn-explore:hover {
+            border-color: rgba(0, 97, 255, 0.42);
+            color: var(--primary);
+            background: #fff;
+            transform: translateY(-3px);
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-bottom: 20px;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.76);
+            border: 1px solid rgba(0, 97, 255, 0.12);
+            color: #334155;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+
+        .hero-pill:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 97, 255, 0.26);
+            box-shadow: 0 16px 34px rgba(0, 97, 255, 0.10);
+        }
+
+        .hero-pill i {
+            color: var(--primary);
+            font-size: 0.78rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 520px;
+        }
+
+        .hero-stat {
+            padding: 13px 15px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(0, 97, 255, 0.12);
+            box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-stat:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 97, 255, 0.24);
+            box-shadow: 0 20px 44px rgba(0, 97, 255, 0.12);
+        }
+
+        .hero-stat strong {
+            display: block;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .hero-stat span {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.72rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .hero-left>* {
+            animation: heroIn 0.75s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .hero-left>*:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+
+        .hero-left>*:nth-child(3) {
+            animation-delay: 0.16s;
+        }
+
+        .hero-left>*:nth-child(4) {
+            animation-delay: 0.24s;
+        }
+
+        .hero-left>*:nth-child(5) {
+            animation-delay: 0.32s;
+        }
+
+        .hero-left>*:nth-child(6) {
+            animation-delay: 0.40s;
+        }
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(22px) scale(0.98);
+                filter: blur(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-left {
+            animation: leftFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes leftFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.2s ease, width 0.22s ease, height 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+        }
+
+        .cursor-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #2599B6;
+            box-shadow: 0 0 18px rgba(0, 97, 255, 0.7);
+        }
+
+        .cursor-ring {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(0, 97, 255, 0.38);
+            backdrop-filter: blur(2px);
+        }
+
+        body.cursor-ready .cursor-dot,
+        body.cursor-ready .cursor-ring {
+            opacity: 1;
+        }
+
+        body.cursor-hover .cursor-ring {
+            width: 54px;
+            height: 54px;
+            border-color: #84B971;
+            background: rgba(0, 97, 255, 0.06);
+        }
+
+        .btn-talk:focus-visible,
+        .btn-explore:focus-visible,
+        .node:focus-visible,
+        .brand-node, .orbit-node:focus-visible {
+            outline: 3px solid rgba(0, 97, 255, 0.28);
+            outline-offset: 4px;
+        }
+
+        /* --- RIGHT SIDE ISOMETRIC CLOUD SCENE --- */
+        .scene-container {
+            position: relative;
+            width: 100%;
+            height: 430px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .isometric-box {
+            position: relative;
+            width: min(100%, 560px);
+            height: 455px;
+            transition: transform 0.45s ease-out;
+            filter: drop-shadow(0 34px 56px rgba(0, 97, 255, 0.14));
+        }
+
+        .isometric-box::before {
+            content: "";
+            position: absolute;
+            inset: 42px 0 16px;
+            background:
+                linear-gradient(120deg, transparent 0 24%, rgba(0, 97, 255, 0.10) 24.2% 24.7%, transparent 25% 49%, rgba(14, 165, 233, 0.10) 49.2% 49.7%, transparent 50%),
+                linear-gradient(60deg, transparent 0 24%, rgba(20, 184, 166, 0.10) 24.2% 24.7%, transparent 25% 49%, rgba(0, 97, 255, 0.08) 49.2% 49.7%, transparent 50%);
+            background-size: 88px 88px;
+            opacity: 0.85;
+            transform: skewY(-8deg);
+            mask-image: radial-gradient(ellipse at 54% 52%, #000 0 54%, transparent 74%);
+        }
+
+        .svg-lines {
+            position: absolute;
+            inset: 54px 10px 26px;
+            width: calc(100% - 20px);
+            height: calc(100% - 80px);
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .line-path {
+            fill: none;
+            stroke: url(#heroLineGrad);
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-dasharray: 7 10;
+            filter: drop-shadow(0 0 8px rgba(0, 97, 255, 0.65));
+            animation: dash 5s linear infinite;
+            opacity: 0.95;
+        }
+
+        .line-path.is-active {
+            stroke-width: 4;
+            stroke-dasharray: 0;
+            opacity: 1;
+            filter: drop-shadow(0 0 14px rgba(0, 97, 255, 0.9));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -120;
+            }
+        }
+
+        .cloud-platform {
+            position: absolute;
+            left: 50%;
+            top: 52%;
+            width: 270px;
+            height: 220px;
+            transform: translate(-50%, -43%);
+        }
+
+        .platform-base {
+            position: absolute;
+            left: 50%;
+            top: 58%;
+            width: 265px;
+            height: 160px;
+            border-radius: 30px;
+            background: linear-gradient(145deg, #fbfdff 0%, #e5f1ff 42%, #9bc8f7 100%);
+            transform: translate(-50%, -50%) rotateX(58deg) rotateZ(45deg);
+            box-shadow: 0 24px 0 #1f74d6, 0 36px 0 #0759b6, 0 46px 48px rgba(15, 23, 42, 0.22);
+        }
+
+        .platform-base::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 22px;
+            border: 2px solid rgba(0, 97, 255, 0.22);
+            box-shadow: inset 0 0 22px rgba(0, 97, 255, 0.14);
+        }
+
+        .platform-base::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 97, 255, 0.28);
+            transform: translate(-50%, -50%);
+            animation: signalPulse 2.6s ease-out infinite;
+        }
+
+        @keyframes signalPulse {
+            0% {
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(0.45);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2.7);
+            }
+        }
+
+        .server-hub {
+            position: absolute;
+            left: 50%;
+            top: 28%;
+            width: 158px;
+            height: 158px;
+            transform: translate(-50%, -50%);
+            animation: floatHub 5s ease-in-out infinite;
+        }
+
+        @keyframes floatHub {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-12px);
+            }
+        }
+
+        .cube {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+        }
+
+        .cube-top {
+            transform: rotateX(60deg) rotateZ(45deg) translateY(-79px);
+            border-radius: 24px;
+            background: linear-gradient(145deg, #ffffff, #edf6ff);
+            box-shadow: 0 16px 24px rgba(30, 64, 175, 0.14);
+        }
+
+        .cube-front {
+            transform: skewY(30deg) translate(-39px, 43px);
+            border-radius: 0 0 12px 22px;
+            background: linear-gradient(145deg, #edf6ff, #cfe6ff);
+        }
+
+        .cube-right {
+            transform: skewY(-30deg) translate(39px, 43px);
+            border-radius: 0 0 22px 12px;
+            background: linear-gradient(145deg, #ffffff, #dceeff);
+        }
+
+        .cube-back,
+        .cube-left {
+            display: none;
+        }
+
+        .cube-top i {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 58px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            transform: translate(-50%, -50%) rotateZ(0deg);
+            border-radius: 10px;
+            color: #fff;
+            background: linear-gradient(135deg, #0061ff, #18b9f2);
+            box-shadow: 0 10px 18px rgba(0, 97, 255, 0.22);
+        }
+
+        .cube-chip {
+            position: absolute;
+            left: 48px;
+            bottom: 12px;
+            width: 40px;
+            height: 56px;
+            border-radius: 7px;
+            transform: skewY(-30deg);
+            background: linear-gradient(145deg, #0ea5e9, #22c55e);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.22);
+            z-index: 4;
+        }
+
+        .node {
+            position: absolute;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            padding: 0;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .node:hover {
+            transform: translateY(-8px);
+        }
+
+        .node.is-active {
+            transform: translateY(-10px) scale(1.04);
+        }
+
+        .node .node-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(217, 235, 255, 0.94));
+            border: 1px solid rgba(0, 97, 255, 0.16);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.13);
+            color: var(--primary);
+            font-size: 1.35rem;
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .node .node-icon::after {
+            content: "";
+            position: absolute;
+            inset: -30%;
+            background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.78) 100%);
+            transform: translateX(-120%);
+            transition: 0.45s ease;
+        }
+
+        .node:hover .node-icon::after,
+        .node.is-active .node-icon::after {
+            transform: translateX(120%);
+        }
+
+        .node.is-active .node-icon,
+        .brand-node.is-active {
+            color: #fff;
+            background: linear-gradient(135deg, #2599B6, #4B71B2) !important;
+            border-color: transparent;
+            box-shadow: 0 18px 36px rgba(0, 97, 255, 0.28);
+        }
+
+        .node.is-active span {
+            color: var(--primary);
+        }
+
+        .node span {
+            font-size: 0.74rem;
+            font-weight: 800;
+            color: #475569;
+            text-transform: none;
+            white-space: nowrap;
+        }
+
+        .brand-node {
+            position: absolute;
+            z-index: 6;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            min-width: 120px;
+            padding: 11px 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(0, 97, 255, 0.12);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.13);
+            backdrop-filter: blur(12px);
+            font-weight: 800;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .brand-node:hover {
+            transform: translateY(-8px);
+        }
+
+        .brand-node.is-active i,
+        .brand-node.is-active small,
+        .brand-node.is-active strong {
+            color: #fff;
+        }
+
+        .brand-node i {
+            color: var(--primary);
+            font-size: 1.35rem;
+        }
+
+        .brand-aws strong {
+            font-size: 1.42rem;
+            line-height: 0.9;
+            text-transform: lowercase;
+        }
+
+        .brand-aws em {
+            display: block;
+            width: 42px;
+            height: 9px;
+            border-bottom: 3px solid #ff9900;
+            border-radius: 50%;
+            margin-top: -2px;
+        }
+
+        .brand-azure strong {
+            display: block;
+            font-size: 0.78rem;
+        }
+
+        .brand-azure small {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.62rem;
+            margin-top: 2px;
+        }
+
+        .node-aws {
+            top: 72px;
+            right: 36px;
+        }
+
+        .node-azure {
+            top: 76px;
+            left: 62px;
+        }
+
+        .node-security {
+            bottom: 54px;
+            left: 74px;
+        }
+
+        .node-users {
+            bottom: 42px;
+            right: 62px;
+        }
+
+        .node-dc {
+            top: 235px;
+            left: 2px;
+        }
+
+        .node-branch {
+            top: 222px;
+            right: -8px;
+        }
+
+        .hero-info-card {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            z-index: 8;
+            width: min(88%, 320px);
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 97, 255, 0.14);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.13);
+            backdrop-filter: blur(14px);
+            transform: translateX(-50%);
+        }
+
+        .hero-info-card strong {
+            display: block;
+            color: var(--text-dark);
+            font-size: 0.92rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-info-card span {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.78rem;
+            line-height: 1.55;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 991px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+
+            .site-nav {
+                position: sticky;
+                top: 0;
+            }
+
+            .nav-shell {
+                min-height: 68px;
+            }
+
+            .brand-logo img {
+                width: 148px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                left: 16px;
+                right: 16px;
+                top: calc(100% + 10px);
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 2px;
+                padding: 14px;
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.96);
+                border: 1px solid rgba(0, 97, 255, 0.12);
+                box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+                backdrop-filter: blur(18px);
+            }
+
+            .site-nav.nav-open .nav-menu {
+                display: flex;
+            }
+
+            .nav-menu a {
+                justify-content: space-between;
+                padding: 12px 14px;
+                border-radius: 10px;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(0, 97, 255, 0.06);
+            }
+
+            .nav-actions {
+                margin-left: auto;
+                margin-right: 16px;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                text-align: center;
+                padding: 34px 0;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-left {
+                margin: 0 auto;
+            }
+
+            .hero-eyebrow {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-stats {
+                margin: 0 auto;
+            }
+
+            .scene-container {
+                height: 330px;
+                overflow: hidden;
+            }
+
+            .isometric-box {
+                width: 500px;
+                height: 395px;
+                transform: scale(0.78);
+                transform-origin: center;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero {
+                padding: 30px 0;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 11vw, 2.7rem);
+            }
+
+            .hero p {
+                font-size: 0.94rem;
+                line-height: 1.65;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-talk,
+            .btn-explore {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .hero-stat {
+                padding: 14px 16px;
+            }
+
+            .scene-container {
+                height: 285px;
+                margin-top: 8px;
+            }
+
+            .isometric-box {
+                transform: scale(0.6);
+            }
+        }
+
+        /* ============================================================
+           TRUSTED PARTNERS SECTION — TIGHT SPACING VERSION
+           ============================================================ */
+
+        .trusted-partners {
+            padding: 30px 0;
+            background: rgb(250, 252, 255);
+            position: relative;
+            border-top: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .partners-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .partners-eyebrow .text {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--primary);
+        }
+
+        .partners-eyebrow .line {
+            width: 25px;
+            height: 1px;
+            background: var(--primary);
+            opacity: 0.2;
+        }
+
+        .partners-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .partner-marquee-container {
+            position: relative;
+            width: 100%;
+            padding: 15px 0;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .partner-marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 40px;
+            animation: marqueeScroll 30s linear infinite;
+        }
+
+        .partner-marquee-container:hover .partner-marquee-track {
+            animation-play-state: paused;
+        }
+
+        .partner-logo-box {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo-box img {
+            height: 32px;
+            width: auto;
+            filter: grayscale(0);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo-box:hover img {
+            opacity: 1;
+            transform: scale(1.08);
+            cursor: pointer;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 991px) {
+            .partner-marquee-track { gap: 30px; }
+            .partner-logo-box img { height: 28px; }
+            .partners-title { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 575px) {
+            .trusted-partners { padding: 35px 0; }
+            .partner-marquee-track { gap: 20px; }
+            .partner-logo-box img { height: 24px; }
+            .partners-title { font-size: 1.1rem; }
+        }
+
+        /* ============================================================
+           INTERACTIVE SOLUTIONS ORBIT SHOWCASE (SLANTED SPLIT UI MATCH)
+           ============================================================ */
+
+        .solutions-section {
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        /* Slanted Slit-Background with explicit stacking context */
+        .solutions-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 60%; /* Spans to the left column boundary - set exactly to 60% as requested */
+            background: linear-gradient(135deg, #1e40af 0%, #0e5cad 100%); /* Deep rich blue matching screenshot */
+            clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
+            z-index: 1;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 991px) {
+            .solutions-section::before {
+                width: 100%;
+                clip-path: none;
+                height: 50%;
+                bottom: auto;
+            }
+        }
+
+        /* Technical Dotted Align Grid */
+        .tech-align-grid {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(148, 163, 184, 0.12) 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Force stacking context so left text layers sit completely above pseudo background overlay */
+        .reveal-left {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Left Side Content Box Inside Blue slanted element - Spaced for larger width */
+        .solutions-content-box {
+            color: #ffffff !important; /* Crisp white contrast over blue */
+            position: relative;
+            z-index: 12;
+            padding: 110px 0;
+        }
+
+        @media (max-width: 991px) {
+            .solutions-content-box {
+                padding: 60px 0 40px;
+            }
+        }
+
+        .solutions-content-box .lbl-framework {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            display: inline-block;
+            position: relative;
+            z-index: 15;
+        }
+
+        .solutions-content-box .lbl-framework::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 45px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .solutions-content-box h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: #ffffff !important;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 15;
+        }
+
+        .solutions-content-box p.desc-p1 {
+            font-size: 1rem;
+            color: #ffffff !important;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 15;
+        }
+
+        .solutions-content-box p.desc-p2 {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8) !important;
+            line-height: 1.75;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 15;
+        }
+
+        .btn-explore-framework {
+            background: #ffffff;
+            color: #1e40af; /* Matches blue backdrop */
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            z-index: 15;
+        }
+
+        .btn-explore-framework:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            color: #0e5cad;
+        }
+
+        /* Right Side Orbit Visual Board */
+        .orbit-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 540px;
+            z-index: 5;
+        }
+
+        .orbit-track-circle {
+            position: relative;
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            border: 2px solid rgba(148, 163, 184, 0.15); /* Solid thin line in screenshot */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* SVG Dynamic Neon Beams connected from Center to Nodes */
+        .orbit-svg-beams {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .orbit-beam-path {
+            stroke: rgba(148, 163, 184, 0.25); /* Solid connection lines in screenshot */
+            stroke-width: 1.5;
+            fill: none;
+            transition: stroke 0.5s ease, stroke-width 0.5s ease;
+        }
+
+        /* Active Connected Beams matches active accent color */
+        .orbit-beam-path.is-active {
+            stroke: var(--active-accent, var(--primary));
+            stroke-width: 2.5;
+        }
+
+        /* Central Hub styling */
+        .orbit-center-hub {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #ffffff;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08), inset 0 0 10px rgba(0, 0, 0, 0.02);
+            border: 4px solid #f1f5f9;
+        }
+
+        .orbit-center-hub .hub-logo-img {
+            width: 42px;
+            height: auto;
+            margin-bottom: 8px;
+        }
+
+        .orbit-center-hub .hub-text {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 3px;
+        }
+
+        .orbit-center-hub .hub-subtext {
+            font-size: 0.58rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: none;
+            letter-spacing: 0.2px;
+            margin-top: 0;
+        }
+
+        /* Orbit Floating Node Core Structure */
+        .orbit-node {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            cursor: pointer;
+            transform: scale(0); /* Animation Initial State */
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Animated Active Entrance Trigger */
+        .solutions-section.vis .orbit-node {
+            opacity: 1;
+            transform: scale(1);
+            transition-delay: calc(var(--idx) * 0.12s);
+        }
+
+        /* Positioning coordinates for 6 perfectly spaced concentric orbital nodes */
+        .orbit-node[data-index="0"] { top: 0%; left: 50%; margin-left: -55px; margin-top: -55px; }
+        .orbit-node[data-index="1"] { top: 25%; left: 93.3%; margin-left: -55px; margin-top: -55px; }
+        .orbit-node[data-index="2"] { top: 75%; left: 93.3%; margin-left: -55px; margin-top: -55px; }
+        .orbit-node[data-index="3"] { top: 100%; left: 50%; margin-left: -55px; margin-top: -55px; }
+        .orbit-node[data-index="4"] { top: 75%; left: 6.7%; margin-left: -55px; margin-top: -55px; }
+        .orbit-node[data-index="5"] { top: 25%; left: 6.7%; margin-left: -55px; margin-top: -55px; }
+
+        /* Icon Wrapper Badge Inside Node (Ultra-Glassmorphism) */
+        .orbit-badge-icon {
+            position: relative;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 1.45rem;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Pulse aura loops surrounding icons on hover */
+        .orbit-node::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            margin-left: -31px;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: var(--segment-color, var(--primary));
+            opacity: 0;
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+
+        /* Text Labels Below Icon */
+        .orbit-node-label {
+            margin-top: 12px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        /* Hover animations on orbital nodes */
+        .orbit-node:hover .orbit-badge-icon {
+            transform: translateY(-5px) scale(1.08);
+            border-color: var(--segment-color, var(--primary));
+            color: var(--segment-color, var(--primary));
+            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.1);
+        }
+
+        .orbit-node:hover::before {
+            transform: scale(1.3);
+            opacity: 0.12;
+        }
+
+        /* Active Selected Node Styling (Glow Circle in Screenshot) */
+        .orbit-node.is-active .orbit-badge-icon {
+            background: #2563eb; /* Clean royal blue */
+            border-color: transparent !important;
+            color: #ffffff !important;
+            transform: scale(1.15);
+            box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15), 0 0 25px rgba(37, 99, 235, 0.35);
+        }
+
+        .orbit-node.is-active .orbit-node-label {
+            color: #2563eb;
+            font-weight: 900;
+            transform: translateY(2px);
+        }
+
+        /* Switchable Micro-Icon inside slanted blue area */
+        .lbl-step-icon {
+            font-size: 3rem;
+            color: #ffffff !important;
+            margin-bottom: 20px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        /* Fade transformations for dynamic copy switches */
+        .fade-transform {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-transform.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Entrance Animations */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-left.vis, 
+        .reveal-right.vis {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* Geometric Accents Over Slanted Blue Section */
+        .blue-section-accent-grid {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(rgba(255,255,255,0.15) 1.5px, transparent 1.5px);
+            background-size: 16px 24px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .blue-section-accent-circles {
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .blue-section-accent-circles::before {
+            content: '';
+            position: absolute;
+            inset: 30px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Custom Left Layout Column Structure to match 60% left-split request */
+        .solutions-col-left {
+            width: 58%; /* Expanded precisely to cover 60% visual width grid spacing */
+            position: relative;
+            z-index: 10;
+            padding: 110px 40px 110px 100px;
+        }
+
+        .solutions-col-right {
+            width: 42%; /* Adjusted to 40% visual ratio */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        @media (max-width: 991px) {
+            .solutions-col-left, .solutions-col-right {
+                width: 100%;
+                padding: 60px 20px;
+            }
+        }
+
+        .solutions-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+
+        /* ============================================================
+           INDUSTRIES WE SERVE & FEATURED SUCCESS STORY (DOUBLE COLUMN GRID)
+           ============================================================ */
+
+        .industries-success-section {
+            background: #ffffff;
+            padding: 30px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .ind-section-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #2599B6;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        /* Industry Grid Cards with Skew Reveal & Overlay zoom */
+        .industry-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .industry-card {
+            position: relative;
+            height: 140px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .industries-success-section.vis .industry-card {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: calc(var(--ci) * 0.08s);
+        }
+
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.85) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
+        }
+
+        .industry-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .industry-card-content {
+            position: relative;
+            z-index: 3;
+            color: #ffffff;
+            transition: transform 0.4s ease;
+        }
+
+        .industry-card-content i {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--primary);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .industry-card-content h5 {
+            font-size: 0.88rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.15);
+        }
+
+        .industry-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .industry-card:hover .industry-card-content i {
+            transform: scale(1.2) translateY(-2px);
+        }
+
+        .industry-card:hover::before {
+            background: linear-gradient(180deg, rgba(37, 153, 182, 0.1) 0%, rgba(15, 23, 42, 0.95) 100%);
+        }
+
+        .all-ind-link {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .all-ind-link:hover {
+            gap: 12px;
+            color: var(--primary-dark);
+        }
+
+        /* Success Story Panel - Match Image Exactly */
+        .story-container-card {
+            background: transparent;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .industries-success-section.vis .story-container-card {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .success-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .story-container-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.35;
+            margin-bottom: 18px;
+        }
+
+        .story-container-card p {
+            font-size: 0.92rem;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        /* Stats Row with Metric progress styling */
+        .story-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .story-stat-node strong {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .story-stat-node span {
+            font-size: 0.72rem;
+            color: #64748b;
+            font-weight: 700;
+            display: block;
+            line-height: 1.3;
+        }
+
+        /* success story visual split image with soft alpha feathered masks */
+        .story-content-split {
+            position: relative;
+            padding-right: 170px;
+        }
+
+        .story-skyscraper-overlay {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .story-skyscraper-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Linear Gradient mask for absolute blending on the left side of the building */
+            mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+        }
+
+        /* ============================================================
+           COUNTERS/STATS BANNER (DEEP DARK NAVY BACKGROUND)
+           ============================================================ */
+
+        .stats-counter-bar {
+            background: #0f172a;
+            padding: 45px 0;
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-bar-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stats-counter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stats-counter-bar.vis .stats-counter-item {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: calc(var(--si) * 0.1s);
+        }
+
+        .stats-counter-item i {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .stats-counter-item:hover i {
+            transform: scale(1.25) rotate(5deg);
+        }
+
+        .stats-counter-item h4 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1;
+            background: linear-gradient(135deg, #ffffff, rgba(255,255,255,0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-counter-item p {
+            font-size: 0.74rem;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* ============================================================
+           OUR TECHNOLOGY ECOSYSTEM (PARTNER MATRIX)
+           ============================================================ */
+
+          .ecosystem-section {
+        background: #ffffff;
+        padding: 100px 0;
+        overflow: hidden;
+    }
+
+    .eco-title {
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--primary);
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .ecosystem-intro h3 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--dark-navy);
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    .ecosystem-intro p {
+        font-size: 1.05rem;
+        color: var(--slate-500);
+        line-height: 1.8;
+        margin-bottom: 35px;
+    }
+
+    /* Matrix Grid Layout */
+    .ecosystem-columns-matrix {
+        display: grid;
+        /* Responsive Grid: Desktop pe 3 columns, Tablet pe 2, Mobile pe 1 */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+    }
+
+    .ecosystem-section.vis .ecosystem-columns-matrix {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .eco-category-column {
+        background: #fbfcfe;
+        padding: 25px;
+        border-radius: 16px;
+        border: 1px solid var(--slate-100);
+        transition: all 0.3s ease;
+    }
+
+    .eco-category-column:hover {
+        background: #ffffff;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+        border-color: var(--primary);
+        transform: translateY(-5px);
+    }
+
+    .eco-category-column h5 {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: var(--dark-navy);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .eco-category-column h5::after {
+        content: '';
+        height: 2px;
+        flex-grow: 1;
+        background: var(--slate-100);
+    }
+
+    .partner-logos-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .eco-partner-logo {
+        display: flex;
+        align-items: center;
+        height: 45px; /* Fixed height for consistency */
+        padding: 5px;
+    }
+
+    .eco-partner-logo img {
+        max-height: 32px; /* Logos thode bade kiye */
+        width: auto;
+        max-width: 120px;
+        
+        transition: all 0.3s ease;
+        object-fit: contain;
+    }
+
+    .eco-category-column:hover .eco-partner-logo img {
+        filter: grayscale(0%); /* Hover pe colors wapas */
+        opacity: 1;
+    }
+
+    .all-ind-link {
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: gap 0.3s ease;
+    }
+
+    .all-ind-link:hover {
+        gap: 15px;
+        color: var(--dark-navy);
+    }
+
+    /* Tablet & Mobile Fixes */
+    @media (max-width: 991px) {
+        .ecosystem-columns-matrix { grid-template-columns: repeat(2, 1fr); }
+        .ecosystem-intro { text-align: center; margin-bottom: 50px; }
+        .ecosystem-intro h3 { font-size: 2rem; }
+    }
+
+    @media (max-width: 576px) {
+        .ecosystem-columns-matrix { grid-template-columns: 1fr; }
+    }
+
+   /* ============================================================
+           UNIQUE ARCHITECTURAL ROADMAP (PREMIUM UI/UX)
+           ============================================================ */
+
+      /* ============================================================
+           ADVANCED ANIMATED ROADMAP (DATA-STREAM UI)
+           ============================================================ */
+        .roadmap-section {
+            padding: 50px 0;
+            background: #ffffff;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* Moving Background Text */
+        .roadmap-bg-text {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12vw;
+            font-weight: 900;
+            color: rgba(37, 153, 182, 0.03);
+            white-space: nowrap;
+            z-index: 0;
+            user-select: none;
+        }
+
+        .roadmap-grid {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* The Central Animated Line */
+        .roadmap-main-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 0%; /* Will be animated via JS */
+            background: #f1f5f9;
+            transform: translateX(-50%);
+            z-index: 1;
+            transition: height 1.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        /* The Glowing Data Pulse */
+        .roadmap-main-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            animation: dataStream 3s infinite linear;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        @keyframes dataStream {
+            0% { top: -100px; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .roadmap-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 3D Content Cards */
+        .roadmap-card {
+            width: 42%;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(37, 153, 182, 0.1);
+            box-shadow: 0 10px 40px rgba(15, 23, 42, 0.03);
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            filter: blur(10px);
+        }
+
+        .roadmap-item:nth-child(odd) .roadmap-card { 
+            transform: translateX(-100px) rotateY(20deg); 
+            text-align: right;
+        }
+        .roadmap-item:nth-child(even) .roadmap-card { 
+            transform: translateX(100px) rotateY(-20deg); 
+            margin-left: auto;
+        }
+
+        /* Active Reveal State */
+        .roadmap-item.is-visible .roadmap-card {
+            opacity: 1;
+            transform: translateX(0) rotateY(0);
+            filter: blur(0);
+        }
+
+        .roadmap-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 25px 60px rgba(37, 153, 182, 0.12);
+            transform: translateY(-10px) !important;
+        }
+
+        /* Central Animated Node */
+        .roadmap-node {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 54px;
+            height: 54px;
+            background: #fff;
+            border: 4px solid #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transition: all 0.5s ease;
+        }
+
+        .roadmap-item.is-visible .roadmap-node {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 8px rgba(37, 153, 182, 0.05);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .roadmap-node i {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            transition: 0.3s;
+        }
+
+        .roadmap-item.is-visible .roadmap-node i {
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Decorative Step Number */
+        .step-float-num {
+            position: absolute;
+            top: -20px;
+            font-size: 5rem;
+            font-weight: 900;
+            color: rgba(15, 23, 42, 0.04);
+            z-index: -1;
+            font-family: serif;
+        }
+        .roadmap-item:nth-child(odd) .step-float-num { right: 20px; }
+        .roadmap-item:nth-child(even) .step-float-num { left: 20px; }
+
+        .roadmap-card h4 { font-weight: 800; color: var(--text-dark); margin-bottom: 15px; }
+        .roadmap-card p { font-size: 0.95rem; color: var(--text-gray); line-height: 1.7; margin: 0; }
+
+        @media (max-width: 991px) {
+            .roadmap-main-line { left: 30px; transform: none; }
+            .roadmap-node { left: 30px; }
+            .roadmap-card { width: 85%; margin-left: 70px !important; text-align: left !important; }
+            .roadmap-item:nth-child(odd) .roadmap-card { transform: translateX(50px); }
+        }
+        /* ============================================================
+           HIGH-IMPACT TRANSFORMATION CALL-TO-ACTION (CTA)
+           ============================================================ */
+
+        .cta-banner-wrapper {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            color: #ffffff;
+            z-index: 1;
+        }
+
+        .cta-banner-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: overlay;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .cta-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cta-banner-wrapper.vis .cta-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .cta-desc {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 0;
+            max-width: 90%;
+        }
+
+        .btn-consultation-white {
+            background: #ffffff;
+            color: var(--primary-dark);
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-consultation-white:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            color: var(--primary);
+        }
+
+        /* ============================================================
+           THE CORPORATE FOOTER (DEEP DARK NAVY BACKGROUND)
+           ============================================================ */
+
+        .site-footer {
+            background: #090e1a;
+            color: #94a3b8;
+            padding: 80px 0 30px;
+            font-size: 0.88rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer-brand h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            line-height: 1.7;
+            margin-bottom: 25px;
+            max-width: 280px;
+        }
+
+        /* Social media links styling */
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            background: var(--primary);
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 25px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Details column */
+        .footer-contacts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-contacts li {
+            display: flex;
+            gap: 12px;
+            line-height: 1.5;
+        }
+
+        .footer-contacts i {
+            color: var(--primary);
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        /* Footer bottom copyright section */
+        .footer-bottom {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 30px;
+            font-size: 0.78rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #ffffff;
+        }
+
+        /* --- RESPONSIVE OPTIMIZATION --- */
+        @media (max-width: 1200px) {
+            .industry-card-grid { grid-template-columns: repeat(2, 1fr); }
+            .ecosystem-columns-matrix { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 991px) {
+            .stats-bar-grid { grid-template-columns: repeat(3, 1fr); gap: 25px; }
+            .site-footer .row > div { margin-bottom: 40px; }
+            .site-footer .row > div:last-child { margin-bottom: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .industry-card-grid { grid-template-columns: 1fr; }
+            .stats-bar-grid { grid-template-columns: repeat(2, 1fr); }
+            .ecosystem-columns-matrix { grid-template-columns: repeat(2, 1fr); }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-bar-grid { grid-template-columns: 1fr; }
+            .ecosystem-columns-matrix { grid-template-columns: 1fr; }
+        }
+        /* ============================================================
+           SMART BACK TO TOP BUTTON
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 54px;
+            height: 54px;
+            background: #ffffff;
+            color: var(--primary);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 998; /* Cursor se niche */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
+            border: 1px solid var(--soft-border);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 15px 35px var(--primary-glow);
+            transform: translateY(-5px);
+        }
+
+        /* Tooltip style */
+        .back-to-top::before {
+            content: 'Top';
+            position: absolute;
+            top: -40px;
+            background: #0f172a;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .back-to-top:hover::before {
+            opacity: 1;
+            top: -45px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <nav class="site-nav" id="siteNav">
+        <div class="container nav-shell">
+            <a class="brand-logo" href="#">
+                <img src="assets/Infraswift-01.png" alt="InfraSwift Technologies">
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#">Industries <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#">Technologies <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li class="mega-parent">
+                    <a href="#">
+                        Solutions
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+
+                    <div class="mega-menu">
+                        <div class="mega-col">
+                            <h5>Cloud Solutions</h5>
+                            <a href="#">Microsoft Azure</a>
+                            <a href="#">AWS</a>
+                            <a href="#">VMware Cloud Foundation</a>
+                        </div>
+
+                        <div class="mega-col">
+                            <h5>Infrastructure Modernization</h5>
+                            <a href="#">VMware vSphere</a>
+                            <a href="#">VMware VCF</a>
+                            <a href="#">Hyper-V</a>
+                            <a href="#">Storage & Backup</a>
+                        </div>
+
+                        <div class="mega-col">
+                            <h5>Cybersecurity</h5>
+                            <a href="#">SOC Services</a>
+                            <a href="#">Fortinet</a>
+                            <a href="#">Microsoft Security</a>
+                            <a href="#">Endpoint Protection</a>
+                        </div>
+
+                        <div class="mega-col">
+                            <h5>Networking</h5>
+                            <a href="#">Cisco</a>
+                            <a href="#">Aruba</a>
+                            <a href="#">SD-WAN</a>
+                            <a href="#">Wireless</a>
+                        </div>
+
+                        <div class="mega-col">
+                            <h5>Managed Services</h5>
+                            <a href="#">24x7 Monitoring</a>
+                            <a href="#">NOC</a>
+                            <a href="#">Helpdesk</a>
+                            <a href="#">Infrastructure Management</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#">Resources <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#">About Us <i class="fas fa-chevron-down"></i></a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="#" class="nav-cta">Talk to an Expert <i class="fas fa-arrow-right"></i></a>
+                <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation"
+                    aria-expanded="false" aria-controls="navMenu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Content -->
+                <div class="col-lg-6">
+                    <div class="hero-left">
+                        <h1>Build Smarter.<br>Secure Deeper.<br><span>Scale Limitlessly.</span></h1>
+                        <p>Modernize infrastructure, strengthen security, and connect cloud, users, branches, and data
+                            centers through future-ready IT solutions.</p>
+
+                        <div class="hero-ctas justify-content-center justify-content-lg-start">
+                            <a href="#" class="btn-talk">Talk to an Expert <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="btn-explore">Explore Solutions <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
+
+                        <div class="hero-pills justify-content-center justify-content-lg-start">
+                            <span class="hero-pill"><i class="fas fa-cloud"></i> Hybrid Cloud</span>
+                            <span class="hero-pill"><i class="fas fa-shield-halved"></i> Security</span>
+                            <span class="hero-pill"><i class="fas fa-server"></i> Data Center</span>
+                        </div>
+
+                        <div class="hero-stats">
+                            <div class="hero-stat"><strong>99.9%</strong><span>Uptime focused architecture</span></div>
+                            <div class="hero-stat"><strong>24/7</strong><span>Monitoring and support</span></div>
+                            <div class="hero-stat"><strong>Cloud+</strong><span>AWS and Azure ready</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 3D Visual -->
+                <div class="col-lg-6">
+                    <div class="scene-container" id="scene">
+                        <div class="isometric-box">
+                            <!-- SVG Connection Lines -->
+                            <svg class="svg-lines" viewBox="0 0 620 440" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="heroLineGrad" x1="0%" y1="0%" x2="100%"
+                                        y2="100%">
+                                        <stop offset="0%" stop-color="#0061ff" />
+                                        <stop offset="100%" stop-color="#18b9f2" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M310 220 L112 92" class="line-path is-active" data-line="azure" />
+                                <path d="M310 220 L508 92" class="line-path" data-line="aws" />
+                                <path d="M310 220 L60 252" class="line-path" data-line="dc" />
+                                <path d="M310 220 L560 242" class="line-path" data-line="branch" />
+                                <path d="M310 220 L132 362" class="line-path" data-line="security" />
+                                <path d="M310 220 L488 366" class="line-path" data-line="users" />
+                            </svg>
+
+                            <div class="brand-node brand-azure node-azure is-active" tabindex="0" role="button"
+                                data-key="azure" data-title="Microsoft Azure"
+                                data-copy="Hybrid Azure architecture for scalable apps, secure workloads, and cloud-ready infrastructure.">
+                                <i class="fab fa-microsoft"></i>
+                                <div><strong>Microsoft</strong><small>Azure</small></div>
+                            </div>
+
+                            <div class="brand-node brand-aws node-aws" tabindex="0" role="button" data-key="aws"
+                                data-title="AWS Cloud"
+                                data-copy="Connect AWS services with automation, backups, monitoring, and resilient deployment patterns.">
+                                <div><strong>aws</strong><em></em></div>
+                            </div>
+
+                            <div class="cloud-platform">
+                                <div class="platform-base"></div>
+
+                                <!-- Central Cloud Hub -->
+                                <div class="server-hub">
+                                    <div class="cube cube-front"></div>
+                                    <div class="cube cube-back"></div>
+                                    <div class="cube cube-right"></div>
+                                    <div class="cube cube-left"></div>
+                                    <div class="cube cube-top">
+                                        <i class="fas fa-diamond"></i>
+                                    </div>
+                                    <div class="cube-chip"></div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Nodes -->
+                            <div class="node node-security" tabindex="0" role="button" data-key="security"
+                                data-title="Security Layer"
+                                data-copy="Policies, access control, threat visibility, and hardening across cloud and on-prem environments.">
+                                <div class="node-icon"><i class="fas fa-shield-halved"></i></div>
+                                <span>Security</span>
+                            </div>
+
+                            <div class="node node-users" tabindex="0" role="button" data-key="users"
+                                data-title="Users"
+                                data-copy="Fast, reliable access for teams with identity, endpoint, and collaboration services aligned.">
+                                <div class="node-icon"><i class="fas fa-users"></i></div>
+                                <span>Users</span>
+                            </div>
+
+                            <div class="node node-dc" tabindex="0" role="button" data-key="dc"
+                                data-title="Data Centers"
+                                data-copy="Modernize data centers with virtualization, storage, backup, observability, and automation.">
+                                <div class="node-icon"><i class="fas fa-server"></i></div>
+                                <span>Data Centers</span>
+                            </div>
+
+                            <div class="node node-branch" tabindex="0" role="button" data-key="branch"
+                                data-title="Branch Offices"
+                                data-copy="Secure branches with connected networking, monitoring, remote support, and managed operations.">
+                                <div class="node-icon"><i class="fas fa-building"></i></div>
+                                <span>Branch Offices</span>
+                            </div>
+
+                            <div class="hero-info-card" aria-live="polite">
+                                <strong id="heroInfoTitle">Microsoft Azure</strong>
+                                <span id="heroInfoCopy">Hybrid Azure architecture for scalable apps, secure workloads,
+                                    and cloud-ready infrastructure.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trusted-partners">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="partners-eyebrow">
+                        <span class="line"></span>
+                        <span class="text">Strategic Alliances</span>
+                        <span class="line"></span>
+                    </div>
+                    <h2 class="partners-title">Powered by Technology Leaders</h2>
+                </div>
+            </div>
+            
+            <div class="partner-marquee-container">
+                <div class="partner-marquee-track">
+                    <!-- Group 1 -->
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft"></div>
+                    <div class="partner-logo-box"><img src="https://logos-world.net/wp-content/uploads/2022/03/VMware-Emblem.png" alt="VMware"></div>
+                    <div class="partner-logo-box"><img src="https://1000logos.net/wp-content/uploads/2025/03/Amazon-Web-Services-Logo-2006.png" alt="AWS"></div>
+                    <div class="partner-logo-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPpv4F5m1N4xdCunjUKft85slhMx17ua70IQ&s" alt="Cisco"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Dell_Logo.png" alt="Dell"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Fortinet_logo.svg" alt="Fortinet"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Red_Hat_Logo_2019.svg/3840px-Red_Hat_Logo_2019.svg.png" alt="Red Hat"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Veeam_Logo_Bounce_Oct23.png" alt="Veeam"></div>
+                    
+                    <!-- Group 2 (Duplicate for loop) -->
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft"></div>
+                    <div class="partner-logo-box"><img src="https://logos-world.net/wp-content/uploads/2022/03/VMware-Emblem.png" alt="VMware"></div>
+                    <div class="partner-logo-box"><img src="https://1000logos.net/wp-content/uploads/2025/03/Amazon-Web-Services-Logo-2006.png" alt="AWS"></div>
+                    <div class="partner-logo-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPpv4F5m1N4xdCunjUKft85slhMx17ua70IQ&s" alt="Cisco"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Dell_Logo.png" alt="Dell"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Fortinet_logo.svg" alt="Fortinet"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Red_Hat_Logo_2019.svg/3840px-Red_Hat_Logo_2019.svg.png" alt="Red Hat"></div>
+                    <div class="partner-logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Veeam_Logo_Bounce_Oct23.png" alt="Veeam"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== DYNAMIC SOLUTIONS FRAMEWORK SECTION (SLANTED SPLIT BACKGROUND - 60% LEFT RATIO FIXED) ====== -->
+    <section class="solutions-section" id="solutions-trigger">
+        
+        <!-- Interactive Technical Grid Backdrop -->
+        <div class="tech-align-grid"></div>
+
+        <!-- Ambient Glow Blobs -->
+        <div class="ambient-glow-blob ambient-glow-blob-1"></div>
+        <div class="ambient-glow-blob ambient-glow-blob-2"></div>
+
+        <!-- Concentric Graphic Accents over Blue Area -->
+        <div class="blue-section-accent-grid"></div>
+        <div class="blue-section-accent-circles"></div>
+
+        <div class="container-fluid p-0">
+            <div class="solutions-row">
+                
+                <!-- LEFT CONTENT COLUMN (DYNAMIC CHANGING INFO INSIDE SLANTED BLUE BG - 60% SCALED) -->
+                <div class="solutions-col-left reveal-left">
+                    <div class="solutions-content-box">
+                        <span class="lbl-framework">Solutions Framework</span>
+                        
+                        <!-- Re-added dynamic icon block -->
+                        <div class="lbl-step-icon fade-transform show" id="dynamic-step-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+
+                        <h2 class="fade-transform show" id="dynamic-title">Solutions That Power Progress</h2>
+                        
+                        <p class="desc-p1 fade-transform show" id="dynamic-desc-p1">
+                            At InfraSwift, we engineer future-ready IT solutions that help organizations innovate, scale, and lead in a rapidly evolving digital landscape.
+                        </p>
+                        
+                        <p class="desc-p2 fade-transform show" id="dynamic-desc-p2">
+                            From cloud transformation to enterprise resilience, our solutions are designed to drive real impact—securely, intelligently, and at scale.
+                        </p>
+
+                        <a href="#" class="btn-explore-framework">
+                            <span>Explore Solutions</span> <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT INTERACTIVE CONCENTRIC ORBIT COLUMN WITH DYNAMIC CONNECTING LINES -->
+                <div class="solutions-col-right reveal-right">
+                    <div class="orbit-wrapper">
+                        
+                        <!-- SVG Connection Beams container positioned on top of the dashed ring track -->
+                        <svg class="orbit-svg-beams" viewBox="0 0 440 440">
+                            <line x1="220" y1="220" x2="220" y2="0" class="orbit-beam-path" data-beam="0" />
+                            <line x1="220" y1="220" x2="410.5" y2="110" class="orbit-beam-path" data-beam="1" />
+                            <line x1="220" y1="220" x2="410.5" y2="330" class="orbit-beam-path" data-beam="2" />
+                            <line x1="220" y1="220" x2="220" y2="440" class="orbit-beam-path" data-beam="3" />
+                            <line x1="220" y1="220" x2="29.5" y2="330" class="orbit-beam-path is-active" data-beam="4" />
+                            <line x1="220" y1="220" x2="29.5" y2="110" class="orbit-beam-path" data-beam="5" />
+                        </svg>
+
+                        <div class="orbit-track-circle">
+                            
+                            <!-- Central Hub -->
+                            <div class="orbit-center-hub">
+                                <svg class="hub-logo-img" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                                <div class="hub-text">InfraSwift</div>
+                                <div class="hub-subtext">Smart Infrastructure. Swift Results.</div>
+                            </div>
+
+                            <!-- Orbit Node 01 (Security) -->
+                            <div class="orbit-node" data-index="0" style="--segment-color: #e11d48; --idx: 0;"
+                                 data-step="01" data-icon="fa-lock" data-title="Security Framework" data-desc-p1="We embed advanced threat protection and zero-trust security policies into the DNA of your digital architecture." data-desc-p2="Our end-to-end encryption, regular compliance audits, and proactive monitoring safeguard your core assets against evolving vectors." data-accent="#e11d48">
+                                <div class="orbit-badge-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="orbit-node-label">Security</div>
+                            </div>
+
+                            <!-- Orbit Node 02 (Managed Services) -->
+                            <div class="orbit-node" data-index="1" style="--segment-color: #4B71B2; --idx: 1;"
+                                 data-step="02" data-icon="fa-server" data-title="Managed Operations" data-desc-p1="Empower your internal IT teams by offloading daily infrastructure maintenance, network provisioning, and technical health diagnostics to our experts." data-desc-p2="Our 24x7 Network Operations Center (NOC) ensures peak structural uptime, rapid patch deployment, and swift problem resolution." data-accent="#4B71B2">
+                                <div class="orbit-badge-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <div class="orbit-node-label">Managed Services</div>
+                            </div>
+
+                            <!-- Orbit Node 03 (IT Consulting) -->
+                            <div class="orbit-node" data-index="2" style="--segment-color: #8b5cf6; --idx: 2;"
+                                 data-step="03" data-icon="fa-chart-line" data-title="IT Advisory & Strategy" data-desc-p1="Navigate modern technology landscapes with complete confidence through our strategic IT consulting and custom architecture blueprints." data-desc-p2="We align your corporate technology roadmaps with actual business goals, optimizing resource allocations and accelerating return on investment." data-accent="#8b5cf6">
+                                <div class="orbit-badge-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="orbit-node-label">IT Consulting</div>
+                            </div>
+
+                            <!-- Orbit Node 04 (Automation) -->
+                            <div class="orbit-node" data-index="3" style="--segment-color: #f59e0b; --idx: 3;"
+                                 data-step="04" data-icon="fa-cog" data-title="Infrastructure Automation" data-desc-p1="Replace time-consuming manual server setups and configuration processes with reliable, programmable infrastructure code (IaC)." data-desc-p2="We automate repetitive deployment tasks to eliminate human errors, minimize server configuration drift, and significantly accelerate speed-to-market." data-accent="#f59e0b">
+                                <div class="orbit-badge-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="orbit-node-label">Automation</div>
+                            </div>
+
+                            <!-- Orbit Node 05 (Cloud - Default Active) -->
+                            <div class="orbit-node is-active" data-index="4" style="--segment-color: #2563eb; --idx: 4;"
+                                 data-step="05" data-icon="fa-cloud" data-title="Solutions That Power Progress" data-desc-p1="At InfraSwift, we engineer future-ready IT solutions that help organizations innovate, scale, and lead in a rapidly evolving digital landscape." data-desc-p2="From cloud transformation to enterprise resilience, our solutions are designed to drive real impact—securely, intelligently, and at scale." data-accent="#2563eb">
+                                <div class="orbit-badge-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="orbit-node-label">Cloud</div>
+                            </div>
+
+                            <!-- Orbit Node 06 (Cloud Migration) -->
+                            <div class="orbit-node" data-index="5" style="--segment-color: #2599B6; --idx: 5;"
+                                 data-step="06" data-icon="fa-cloud-upload-alt" data-title="Cloud Migration Services" data-desc-p1="Transition your legacy databases, local applications, and structural storage blocks seamlessly to robust hybrid public cloud systems." data-desc-p2="Our structured migration frameworks minimize data transfer downtime, ensure flawless asset integrity, and guarantee operational continuity." data-accent="#2599B6">
+                                <div class="orbit-badge-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="orbit-node-label">Cloud Migration</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!-- ====== OUR METHODOLOGY SECTION (NEW) ====== -->
+<section class="roadmap-section" id="roadmap-trigger">
+        <div class="roadmap-bg-text" id="parallax-text">INFRASTRUCTURE</div>
+        
+        <div class="container">
+            <div class="roadmap-header text-center mb-5">
+                <span class="eco-title">Our Methodology</span>
+                <h2 class="fw-bold" style="font-size: 2.8rem;">Architecture Delivery Lifecycle</h2>
+            </div>
+
+            <div class="roadmap-grid">
+                <!-- Progress Line -->
+                <div class="roadmap-main-line" id="roadmap-line"></div>
+
+                <!-- Step 01 -->
+                <div class="roadmap-item" data-step="1">
+                    <div class="roadmap-card">
+                        <span class="step-float-num">01</span>
+                        <h4>Discovery & Intelligence</h4>
+                        <p>Detailed assessment of your existing ecosystem. We analyze workloads, traffic patterns, and security risks to build a data-driven transformation plan.</p>
+                    </div>
+                    <div class="roadmap-node">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="roadmap-item" data-step="2">
+                    <div class="roadmap-card">
+                        <span class="step-float-num">02</span>
+                        <h4>Precision Architecture</h4>
+                        <p>We design high-availability blueprints. Every node, backup policy, and firewall rule is architected to meet enterprise-grade SLA requirements.</p>
+                    </div>
+                    <div class="roadmap-node">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="roadmap-item" data-step="3">
+                    <div class="roadmap-card">
+                        <span class="step-float-num">03</span>
+                        <h4>Seamless Integration</h4>
+                        <p>Execution with zero-downtime methodology. We deploy infrastructure as code (IaC) to ensure consistency and speed across all environments.</p>
+                    </div>
+                    <div class="roadmap-node">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="roadmap-item" data-step="4">
+                    <div class="roadmap-card">
+                        <span class="step-float-num">04</span>
+                        <h4>Unified Governance</h4>
+                        <p>Final hand-over with 24/7 observability tools. We ensure your team has complete visibility and control over the new optimized infrastructure.</p>
+                    </div>
+                    <div class="roadmap-node">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ====== INDUSTRIES WE SERVE & SUCCESS STORY SECTION ====== -->
+    <section class="industries-success-section" id="industries-trigger">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Left Side: Industries We Serve -->
+                <div class="col-lg-6">
+                    <span class="ind-section-title">INDUSTRIES WE SERVE</span>
+                    
+                    <div class="industry-card-grid">
+                        
+                        <!-- 1. Banking -->
+                        <a href="#" class="industry-card" style="--ci: 0;">
+                            <img src="https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?auto=format&fit=crop&w=400&q=80" alt="Banking">
+                            <div class="industry-card-content">
+                                <i class="fas fa-building-columns"></i>
+                                <h5>Banking & Financial Services</h5>
+                            </div>
+                        </a>
+
+                        <!-- 2. Healthcare -->
+                        <a href="#" class="industry-card" style="--ci: 1;">
+                            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=400&q=80" alt="Healthcare">
+                            <div class="industry-card-content">
+                                <i class="fas fa-heart-pulse"></i>
+                                <h5>Healthcare</h5>
+                            </div>
+                        </a>
+
+                        <!-- 3. Government -->
+                        <a href="#" class="industry-card" style="--ci: 2;">
+                            <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=400&q=80" alt="Government">
+                            <div class="industry-card-content">
+                                <i class="fas fa-landmark"></i>
+                                <h5>Government</h5>
+                            </div>
+                        </a>
+
+                        <!-- 4. Manufacturing -->
+                        <a href="#" class="industry-card" style="--ci: 3;">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" alt="Manufacturing">
+                            <div class="industry-card-content">
+                                <i class="fas fa-industry"></i>
+                                <h5>Manufacturing</h5>
+                            </div>
+                        </a>
+
+                        <!-- 5. Education -->
+                        <a href="#" class="industry-card" style="--ci: 4;">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80" alt="Education">
+                            <div class="industry-card-content">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h5>Education</h5>
+                            </div>
+                        </a>
+
+                        <!-- 6. Retail -->
+                        <a href="#" class="industry-card" style="--ci: 5;">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1d704d3?auto=format&fit=crop&w=400&q=80" alt="Retail">
+                            <div class="industry-card-content">
+                                <i class="fas fa-basket-shopping"></i>
+                                <h5>Retail</h5>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <a href="#" class="all-ind-link">
+                        View all industries <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Right Side: Featured Success Story (Merged Split Visual Design) -->
+                <div class="col-lg-6">
+                    <div class="story-container-card">
+                        <div class="story-content-split">
+                            <div>
+                                <span class="success-eyebrow">FEATURED SUCCESS STORY</span>
+                                <h3>Hybrid Cloud Transformation Drives 60% Faster Deployment</h3>
+                                <p>
+                                    We helped a global enterprise modernize their infrastructure with VMware Cloud Foundation and Microsoft Azure, achieving unprecedented agility and efficiency.
+                                </p>
+                            </div>
+
+                            <!-- Absolutely Positioned Feathered Corporate Building Image -->
+                            <div class="story-skyscraper-overlay d-none d-sm-block">
+                                <img class="story-skyscraper-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" alt="Corporate Skyscraper">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="story-stats-grid">
+                                <div class="story-stat-node">
+                                    <strong class="counter" data-target="60">0</strong>
+                                    <span>Faster Deployment</span>
+                                </div>
+                                <div class="story-stat-node">
+                                    <strong class="counter" data-target="45">0</strong>
+                                    <span>Reduction in Costs</span>
+                                </div>
+                                <div class="story-stat-node">
+                                    <strong class="counter" data-target="100">0</strong>
+                                    <span>Improved Availability</span>
+                                </div>
+                            </div>
+
+                            <a href="#" class="all-ind-link">
+                                Read the full story <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== COUNTERS/STATS BANNER ====== -->
+    <section class="stats-counter-bar" id="stats-bar-trigger">
+        <div class="container">
+            <div class="stats-bar-grid">
+                
+                <!-- Stat 1 -->
+                <div class="stats-counter-item" style="--si: 0;">
+                    <i class="fas fa-rocket"></i>
+                    <h4 class="counter" data-target="100">0</h4>
+                    <p>Projects Delivered</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="stats-counter-item" style="--si: 1;">
+                    <i class="fas fa-user-tie"></i>
+                    <h4 class="counter" data-target="50">0</h4>
+                    <p>Enterprise Clients</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="stats-counter-item" style="--si: 2;">
+                    <i class="fas fa-handshake"></i>
+                    <h4 class="counter" data-target="10">0</h4>
+                    <p>Technology Partners</p>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="stats-counter-item" style="--si: 3;">
+                    <i class="fas fa-shield-halved"></i>
+                    <h4 class="counter" data-target="99.9">0</h4>
+                    <p>Service Availability</p>
+                </div>
+
+                <!-- Stat 5 -->
+                <div class="stats-counter-item" style="--si: 4;">
+                    <i class="fas fa-headset"></i>
+                    <h4 class="counter" data-target="24">0</h4>
+                    <p>Support Coverage</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="ecosystem-section" id="ecosystem-trigger">
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <!-- Left Info -->
+            <div class="col-lg-4">
+                <div class="ecosystem-intro vis" id="eco-intro-box">
+                    <span class="eco-title">Technology Partners</span>
+                    <h3>The Stack We Use to Build Excellence.</h3>
+                    <p>We leverage world-class infrastructure and tools from industry leaders to ensure your certifications are backed by real-world tech.</p>
+                    <a href="#" class="all-ind-link">
+                        View Full Ecosystem <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Matrix -->
+            <div class="col-lg-8">
+                <div class="ecosystem-columns-matrix">
+                    
+                    <!-- Box 1 -->
+                    <div class="eco-category-column">
+                        <h5>Cloud Space</h5>
+                        <div class="partner-logos-wrapper">
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg" alt="Azure"></div>
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS"></div>
+                        </div>
+                    </div>
+
+                    <!-- Box 2 -->
+                    <div class="eco-category-column">
+                        <h5>Virtualization</h5>
+                        <div class="partner-logos-wrapper">
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Vmware.svg" alt="VMware"></div>
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Hyper-V.svg" alt="Hyper-V"></div>
+                        </div>
+                    </div>
+
+                    <!-- Box 3 -->
+                    <div class="eco-category-column">
+                        <h5>Security</h5>
+                        <div class="partner-logos-wrapper">
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Fortinet_logo.svg" alt="Fortinet"></div>
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_Defender_%282019-present%29.svg" alt="Defender"></div>
+                        </div>
+                    </div>
+
+                    <!-- Box 4 -->
+                    <div class="eco-category-column">
+                        <h5>Networking</h5>
+                        <div class="partner-logos-wrapper">
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" alt="Cisco"></div>
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Aruba_Networks_logo.svg/2560px-Aruba_Networks_logo.svg.png" alt="Aruba"></div>
+                        </div>
+                    </div>
+
+                    <!-- Box 5 -->
+                    <div class="eco-category-column">
+                        <h5>Storage</h5>
+                        <div class="partner-logos-wrapper">
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_Technologies_logo.svg/2560px-Dell_Technologies_logo.svg.png" alt="Dell"></div>
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Veeam_Logo_Bounce_Oct23.png" alt="Veeam"></div>
+                        </div>
+                    </div>
+
+                    <!-- Box 6 -->
+                    <div class="eco-category-column">
+                        <h5>Systems</h5>
+                        <div class="partner-logos-wrapper">
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Red_Hat_Logo_2019.svg/2560px-Red_Hat_Logo_2019.svg.png" alt="Red Hat"></div>
+                            <div class="eco-partner-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Microsoft_Windows_Server_logo_%282012-2021%29.svg" alt="Win Server"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- ====== HIGH-IMPACT TRANSFORMATION BANNER (CTA) ====== -->
+    <div class="cta-banner-wrapper" id="cta-trigger">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8 text-center text-lg-start cta-content">
+                    <h2 class="cta-title">Ready to transform your IT environment?</h2>
+                    <p class="cta-desc">
+                        Let our experts help you build a secure, scalable, and future-ready infrastructure.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="#" class="btn-consultation-white">
+                        <span>Schedule a Free Consultation</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== THE EXECUTIVE SITE FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-4">
+                
+                <!-- Branding Left -->
+                <div class="col-lg-4 col-md-6 footer-brand">
+                    <!-- <h4>INFRA<span style="color: var(--primary)">SWIFT</span></h4> -->
+                     <img src="assets/logo.png" alt="InfraSwift Technologies" height="74px">
+                    <p>
+                        Empowering businesses with innovative IT solutions to secure, scale, and accelerate their digital future.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Solutions Grid Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Solutions</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Cloud Solutions</a></li>
+                        <li><a href="#">Infrastructure Modernization</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">Networking Solutions</a></li>
+                        <li><a href="#">Managed Services</a></li>
+                        <li><a href="#">IT Consulting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industries Grid Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Industries</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Banking & Financial Services</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Government</a></li>
+                        <li><a href="#">Manufacturing</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Retail</a></li>
+                    </ul>
+                </div>
+
+                <!-- Corporate Info links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact details -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Contact Us</h5>
+                    <ul class="footer-contacts">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+92 21 3713 1111</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@infraswift.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot"></i>
+                            <span>Suite 501, Business Avenue, Block 6, PECHS, Karachi, Pakistan</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Credits -->
+            <div class="footer-bottom">
+                <div>© 2026 InfraSwift Technologies. All rights reserved.</div>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        const $scene = $('.isometric-box');
+        const $targets = $('.node, .brand-node');
+        const $lines = $('.line-path');
+        const $title = $('#heroInfoTitle');
+        const $copy = $('#heroInfoCopy');
+        const $cursorDot = $('.cursor-dot');
+        const $cursorRing = $('.cursor-ring');
+        const $siteNav = $('#siteNav');
+        const $navToggle = $('#navToggle');
+
+        $navToggle.on('click', function() {
+            const isOpen = $siteNav.toggleClass('nav-open').hasClass('nav-open');
+            $(this).attr('aria-expanded', isOpen);
+            $(this).find('i').toggleClass('fa-bars', !isOpen).toggleClass('fa-xmark', isOpen);
+        });
+
+        $('.nav-menu a').on('click', function() {
+            $siteNav.removeClass('nav-open');
+            $navToggle.attr('aria-expanded', 'false').find('i').addClass('fa-bars').removeClass('fa-xmark');
+        });
+
+        $('.mega-parent > a').on('click', function(e) {
+            if ($(window).width() < 992) {
+                e.preventDefault();
+                $(this).parent().toggleClass('active');
+            }
+        });
+
+        function setActive($item) {
+            const key = $item.data('key');
+            $targets.removeClass('is-active');
+            $item.addClass('is-active');
+            $lines.removeClass('is-active');
+            $lines.filter(`[data-line="${key}"]`).addClass('is-active');
+            $title.text($item.data('title'));
+            $copy.text($item.data('copy'));
+        }
+
+        $targets.on('mouseenter focus click', function() {
+            setActive($(this));
+        });
+
+        $targets.on('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setActive($(this));
+            }
+        });
+
+        $('.scene-container').on('mousemove', function(e) {
+            if ($(window).width() < 992) return;
+            const Mathrect = this.getBoundingClientRect();
+            const x = (e.clientX - Mathrect.left) / Mathrect.width - 0.5;
+            const y = (e.clientY - Mathrect.top) / Mathrect.height - 0.5;
+            $scene.css('transform',
+                `translate(${x * 18}px, ${y * 14}px) rotateX(${-y * 3}deg) rotateY(${x * 4}deg)`);
+        }).on('mouseleave', function() {
+            $scene.css('transform', 'translate(0, 0) rotateX(0) rotateY(0)');
+        });
+
+        $('.hero').on('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            this.style.setProperty('--mx', `${x}%`);
+            this.style.setProperty('--my', `${y}%`);
+        });
+
+        $(document).on('mousemove', function(e) {
+            if ($(window).width() < 992) return;
+            $('body').addClass('cursor-ready');
+            $cursorDot.css({
+                left: e.clientX,
+                top: e.clientY
+            });
+            $cursorRing.css({
+                left: e.clientX,
+                top: e.clientY
+            });
+        });
+
+        $('a, button, .node, .brand-node, .hero-pill, .hero-stat, .orbit-node').on('mouseenter', function() {
+            $('body').addClass('cursor-hover');
+        }).on('mouseleave', function() {
+            $('body').removeClass('cursor-hover');
+        });
+
+        // ============================================================
+        // INTERACTIVE SOLUTIONS ORBIT LOGIC
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const section = document.getElementById('solutions-trigger');
+            const nodes = document.querySelectorAll('.orbit-node');
+            const beams = document.querySelectorAll('.orbit-beam-path');
+            const stepIconEl = document.getElementById('dynamic-step-icon');
+            const titleEl = document.getElementById('dynamic-title');
+            const descP1El = document.getElementById('dynamic-desc-p1');
+            const descP2El = document.getElementById('dynamic-desc-p2');
+
+            // Click action on segments to dynamically switch content
+            nodes.forEach(node => {
+                node.addEventListener('click', function() {
+                    if (this.classList.contains('is-active')) return;
+
+                    const index = this.getAttribute('data-index');
+
+                    // 1. Toggle Active states on Node elements
+                    nodes.forEach(n => n.classList.remove('is-active'));
+                    this.classList.add('is-active');
+
+                    // 2. Control dynamic connection beams safely
+                    beams.forEach(b => {
+                        if (b) b.classList.remove('is-active');
+                    });
+                    const matchingBeam = document.querySelector(`.orbit-beam-path[data-beam="${index}"]`);
+                    if(matchingBeam) {
+                        matchingBeam.classList.add('is-active');
+                    }
+
+                    // 3. Fetch specific node data
+                    const activeIconClass = this.getAttribute('data-icon');
+                    const title = this.getAttribute('data-title');
+                    const descP1 = this.getAttribute('data-desc-p1');
+                    const descP2 = this.getAttribute('data-desc-p2');
+                    const accentColor = this.getAttribute('data-accent');
+
+                    // 4. Smooth Content Transition Crossfade safely with NULL filters
+                    const elementsToFade = [stepIconEl, titleEl, descP1El, descP2El].filter(el => el !== null);
+                    elementsToFade.forEach(el => el.classList.remove('show'));
+
+                    setTimeout(() => {
+                        // Update DOM elements on transition callback safely
+                        if (stepIconEl && activeIconClass) {
+                            stepIconEl.innerHTML = `<i class="fas ${activeIconClass}"></i>`;
+                        }
+                        if (titleEl) {
+                            titleEl.textContent = title;
+                        }
+                        if (descP1El) {
+                            descP1El.textContent = descP1;
+                        }
+                        if (descP2El) {
+                            descP2El.textContent = descP2;
+                        }
+
+                        // Apply new accent-specific colors dynamically
+                        if (section) {
+                            section.style.setProperty('--active-accent', accentColor);
+                        }
+
+                        elementsToFade.forEach(el => el.classList.add('show'));
+                    }, 300);
+                });
+            });
+
+            // Intersection Observer scroll trigger for upper section
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        section.classList.add('vis'); 
+                        section.querySelector('.reveal-left').classList.add('vis');
+                        section.querySelector('.reveal-right').classList.add('vis');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            observer.observe(section);
+        });
+
+        // ============================================================
+        // DYNAMIC COUNTERS & ADVANCED SCROLL REVEALS
+        // ============================================================
+        $(document).ready(function() {
+            
+            // Function to animate counts smoothly
+            function runCounters($section) {
+                $section.find('.counter').each(function() {
+                    const $this = $(this);
+                    if ($this.hasClass('counted')) return;
+                    $this.addClass('counted');
+
+                    const target = parseFloat($this.attr('data-target'));
+                    $({ countNum: 0 }).animate({ countNum: target }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            // Support float percentage values like 99.9%
+                            if (target % 1 !== 0) {
+                                $this.text(this.countNum.toFixed(1) + "%");
+                            } else {
+                                $this.text(Math.floor(this.countNum) + "+");
+                            }
+                        },
+                        complete: function() {
+                            if (target % 1 !== 0) {
+                                $this.text(target + "%");
+                            } else {
+                                $this.text(target + "+");
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Scroll trigger logic for Industries
+            const indObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('vis');
+                        // Also run stats counters if success card is revealed
+                        runCounters($(entry.target));
+                    }
+                });
+            }, { threshold: 0.15 });
+            indObserver.observe(document.getElementById('industries-trigger'));
+
+            // Scroll trigger for Stats Counter Bar
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('vis');
+                        runCounters($(entry.target));
+                    }
+                });
+            }, { threshold: 0.2 });
+            statsObserver.observe(document.getElementById('stats-bar-trigger'));
+
+            // Scroll trigger for Ecosystem Tech Grid
+            const ecoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('vis');
+                        $('#eco-intro-box').addClass('vis');
+                    }
+                });
+            }, { threshold: 0.15 });
+            ecoObserver.observe(document.getElementById('ecosystem-trigger'));
+
+            // Scroll trigger for Consultation CTA
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('vis');
+                    }
+                });
+            }, { threshold: 0.2 });
+            ctaObserver.observe(document.getElementById('cta-trigger'));
+
+        });
+       $(window).on('scroll', function() {
+            const scrollTop = $(window).scrollTop();
+            const windowHeight = $(window).height();
+            const section = $('#roadmap-trigger');
+            
+            if (!section.length) return;
+
+            const sectionTop = section.offset().top;
+            const sectionHeight = section.height();
+
+            // 1. Line Progress Logic
+            let scrollPercent = ((scrollTop + windowHeight/2) - sectionTop) / sectionHeight * 100;
+            scrollPercent = Math.min(Math.max(scrollPercent, 0), 100);
+            $('#roadmap-line').css('height', scrollPercent + '%');
+
+            // 2. Parallax Text Move
+            const parallaxVal = (scrollTop - sectionTop) * 0.1;
+            $('#parallax-text').css('transform', `translateX(calc(-50% + ${parallaxVal}px))`);
+
+            // 3. Item Reveal Logic
+            $('.roadmap-item').each(function() {
+                const itemTop = $(this).offset().top;
+                if (scrollTop + windowHeight * 0.7 > itemTop) {
+                    $(this).addClass('is-visible');
+                } else {
+                    $(this).removeClass('is-visible');
+                }
+            });
+        });
+        // Back to Top Logic
+        const $backToTop = $('#backToTop');
+
+        $(window).on('scroll', function() {
+            if ($(window).scrollTop() > 400) {
+                $backToTop.addClass('active');
+            } else {
+                $backToTop.removeClass('active');
+            }
+        });
+
+        $backToTop.on('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Custom Cursor interaction for Back to Top
+        $backToTop.on('mouseenter', function() {
+            $('body').addClass('cursor-hover');
+        }).on('mouseleave', function() {
+            $('body').removeClass('cursor-hover');
+        });
+    </script>
+
+    
+</body>
+
+</html>
